@@ -1,0 +1,15 @@
+{% extends 'members/accueil.html' %}
+
+{% block content %}
+<div class="container" style="text-align: center; margin-top: 50px;">
+    <h2 style="color: #dc3545;">Oups ! Profil introuvable</h2>
+    <p>
+        Bonjour <strong>{{ request.user.username }}</strong>, <br>
+        Il semble que vous soyez connecté, mais aucune fiche de membre n'est associée à votre compte.
+    </p>
+    <p>Veuillez contacter l'administrateur ou compléter votre inscription.</p>
+    
+    <a href="{% url 'inscrire_membre' %}" class="btn btn-primary">sincrire</a>
+    <a href="{% url 'login' %}" class="btn btn-secondary">Se déconnecter</a>
+</div>
+{% endblock %}

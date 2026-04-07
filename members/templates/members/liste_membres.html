@@ -1,0 +1,52 @@
+
+
+{% block title %}CSG  Liste des Membres{% endblock %}
+{% block  content %}
+    <div class="container">
+        <h1>Membres du group  CSG</h1>
+        <a href="{% url 'ajouter_membre' %}" class="btn-add">ajouter un nouveau membre</a>
+        <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" >
+             déconnecter ({{ user.username }})
+        </button></form>
+        <a href="{% url 'login' %}">Espace Admin</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom & Prénom</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Cotisation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for membre in membres %}
+                <tr>
+                    <td>{{ membre.prenom }} {{ membre.nom }}</td>
+                    <td>{{ membre.email }}</td>
+                    <td>{{ membre.status}}</td>
+                    <td>{{ membre.cotisation|floatformat:2 }} €</td>
+<td>
+    <div class="dropdown">
+        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenu{{ membre.id }}" data-bs-toggle="dropdown" aria-expanded="false">
+            Actions
+        </button>
+        
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu{{ membre.id }}">
+            <li><a class="dropdown-item" href="{% url 'modifier_membre' membre.id %}"> Modifier</a></li>
+            <li><a class="dropdown-item text-primary" href="{% url 'contacter_membre' membre.id %}"> Contacter</a></li>
+            <li><a class="dropdown-item text-danger" href="{% url 'supprimer_membre' membre.id %}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"> Supprimer</a></li>
+        </ul>
+    </div>
+</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" style="text-align: center;">Aucun membre enregistré pour le moment.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock  %}

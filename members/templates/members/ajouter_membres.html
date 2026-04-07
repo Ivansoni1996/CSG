@@ -1,0 +1,12 @@
+{% extends 'members/accueil.html' %}
+
+{% block title %}CSG Nouveau Membre{% endblock %}
+{% block content %}
+    <div class="card">
+        <h2>Ajouter un membre (RPNG)</h2>
+        <form method="post">
+            {% csrf_token %} {{ form.as_p }}
+            <button type="submit" class="btn">Ajouter</button>
+        </form>
+    </div>
+{% endblock %}

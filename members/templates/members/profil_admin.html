@@ -1,0 +1,62 @@
+<nav style="background-color:black">
+        <a href="{% url 'accueil' %}">Accueil</a>
+        <a href="{% url 'liste_membres' %}">liste Membres</a>
+         <a href="{% url 'ajouter_membre' %}">Ajouter Membre</a>
+        <a href="{% url 'login' %}">Logout</a>
+        </nav>
+{% block content %}
+<div class="profile-container">
+    <div class="header">
+        <h1>{{ membre.prenom }} {{ membre.nom }}</h1>
+        <p>Matricule : <strong>{{ membre.matricule }}</strong></p>
+    </div>
+
+    <div class="info-section">
+        <div class="info-group">
+            <div class="label">Email</div>
+            <div class="value">{{ membre.email }}</div>
+        </div>
+        <div class="info-group">
+            <div class="label">Statut Actuel</div>
+            <div class="value">
+                <span class="status-badge {% if membre.status == 'Actif' %}status-actif{% else %}status-default{% endif %}">
+                    {{ membre.status|upper }}
+                </span>
+            </div>
+        </div>
+        <div class="info-group">
+            <div class="label">Cotisation versée</div>
+            <div class="value">{{ membre.cotisation }} EUR</div>
+        </div>
+    </div>
+
+    <div class="payment-area">
+        <h3>Régler ma cotisation annuelle</h3>
+        <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">
+            Montant : <strong>5.00 EUR</strong>
+        </p>
+        
+        <div id="paypal-button-container"></div>
+    </div>
+</div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=TON_CLIENT_ID&currency=EUR"></script>
+<script>
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: { value: '5.00' },
+                    custom_id: "{{ membre.matricule }}"
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Paiement réussi, merci ' + details.payer.name.given_name + ' !');
+                location.reload(); // Recharge la page pour voir les changements
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
+{% endblock %}
