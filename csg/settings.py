@@ -114,6 +114,6 @@ LOGIN_URL = 'login'
 #EMAIL_USE_TLS = False
 #EMAIL_USE_SSL = True
 #EMAIL_HOST_USER = 'solidaritecameroun06@gmail.com'
-#EMAIL_HOST_PASSWORD = 'lzsp rjwj curp rpyg'
+
 # Les emails s'afficheront dans ton terminal noir au lieu d'être envoyés pour de vrai
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
