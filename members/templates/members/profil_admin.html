@@ -1,9 +1,7 @@
-<nav style="background-color:black">
-        <a href="{% url 'accueil' %}">Accueil</a>
-        <a href="{% url 'liste_membres' %}">liste Membres</a>
-         <a href="{% url 'ajouter_membre' %}">Ajouter Membre</a>
-        <a href="{% url 'login' %}">Logout</a>
-        </nav>
+
+{% extends 'members/accueil.html' %}
+{% block link_nav %}
+    {% endblock %}
 {% block content %}
 <div class="profile-container">
     <div class="header">
