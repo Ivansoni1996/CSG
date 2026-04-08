@@ -1,5 +1,12 @@
 {% extends 'members/accueil.html' %}
+
 {% block link_nav %}
+<nav style="background-color:blue">
+        <a href="{% url 'accueil' %}">Accueil</a>
+        <a href="{% url 'inscrire_membre' %}">S'inscrire</a>
+        <a href="{% url 'accueil' %}">A propos</a>
+        <a href="{% url 'login' %}">contacte</a>
+    </nav>
     {% endblock %}
 {% block title %}Inscription CSG{% endblock %}
 {% block content %}

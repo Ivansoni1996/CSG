@@ -1,6 +1,11 @@
 
 {% extends 'members/accueil.html' %}
 {% block link_nav %}
+    <nav style="background-color:blue">
+         <a href="{% url 'login' %}">Logout</a>
+        <a href="{% url 'ajouter_membre' %}">Ajouter un membre</a>
+        <a href="{% url 'liste_membres' %}">Liste_membre</a>
+    </nav>
     {% endblock %}
 {% block content %}
 <div class="profile-container">

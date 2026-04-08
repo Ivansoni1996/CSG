@@ -2,6 +2,13 @@
 {% extends 'members/accueil.html' %}
 {% block title %}CSG  Liste des Membres{% endblock %}
 {% block link_nav %}
+    <nav style="background-color:blue">
+        <a href="{% url 'accueil' %}">Accueil</a>
+        <a href="{% url 'ajouter_membre' %}">Ajouter un membre</a>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'accueil' %}">A propos</a>
+        <a href="{% url 'login' %}">contacte</a>
+    </nav>
     {% endblock %}
 {% block  content %}
     <div class="container">
