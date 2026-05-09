@@ -1,0 +1,38 @@
+
+{% extends 'members/base.html' %}
+{% block link_nav %}
+    <nav style="background-color:blue">
+        <a href="{% url 'home' %}">home</a>
+    </nav>
+{% endblock %}
+{% block  content %}
+ 
+        <table>
+            <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Cotisation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for membre in membres %}
+                <tr>
+                    <td>{{ membre.prenom }}</td>
+                    <td>{{ membre.nom }}</td>
+                    <td>{{ membre.email }}</td>
+                    <td>{{ membre.status}}</td>
+                    <td>{{ membre.cotisation|floatformat:2 }} €</td>
+<
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" style="text-align: center;">Aucun membre enregistré pour le moment.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock  %}
