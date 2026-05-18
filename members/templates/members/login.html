@@ -9,17 +9,20 @@
 {% block content %}
 <div class="login-container">
     <h2>Connexion Profile CSG</h2>
-    <form method="post">
+    {% if error_message %}
+    <p class="error-message">{{ error_message }}</p>
+    {% endif %}
+    <form method="POST">
         {% csrf_token %}
         <div class="form-group">
-            <label>Matricule</label>
-            {{ form.username }}
+            <label>email</label>
+            {{ form.email }}
         </div>
         <div class="form-group">
             <label>Mot de passe</label>
             {{ form.password }}
         </div>
-        <button type="submit" class="btn-login">Se connecter</button>
+        <button type="submit" class="btn-login">connect</button>
     </form>
 </div>
 {% endblock %}
